@@ -11,7 +11,6 @@ VPN Gate SSTP 节点检测流水线
      (单节点 HTTP 成功 != 节点可用; 以 Worker 返回 JSON 的 success 字段为准)
   5. 保留 success=true 的节点, 按国家分组, 生成 public/data.json + public/index.html
   6. 网页端 (GitHub Pages) 读取 data.json 展示
-
 退出码:
   0 = 正常完成 (允许部分节点检测失败)
   1 = 硬性失败 (数据源全挂 / 解析不出 SSTP 节点 / Worker 完全不可达 / 程序异常)
@@ -28,9 +27,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from urllib.parse import quote
-
 import requests
-
 # 保证日志在任何控制台编码下都能输出 (Windows GBK 控制台不会崩)
 for _stream in (sys.stdout, sys.stderr):
     try:
