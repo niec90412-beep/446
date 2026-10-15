@@ -17,7 +17,6 @@ VPN Gate SSTP 节点检测流水线
   1 = 硬性失败 (数据源全挂 / 解析不出 SSTP 节点 / Worker 完全不可达 / 程序异常)
      这些情况绝不允许"假成功"
 """
-
 import base64
 import csv
 import io
@@ -51,8 +50,7 @@ VPNGATE_MIRROR = os.environ.get(
     "https://raw.githubusercontent.com/fdciabdul/Vpngate-Scraper-API/main/json/data.json",
 )
 # 已部署的 Cloudflare Worker 检测接口 (GET /check?proxyip=host:port, 实测确认)
-WORKER_CHECK_URL = os.environ.get("CHECK_WORKER", "https://
-445.zhangxiegang.ccwu.cc/check?sstp=vpn:vpn@")
+WORKER_CHECK_URL = os.environ.get("CHECK_WORKER", "https://check.helei.kdns.fr/check?sstp=vpn:vpn@")
 CONCURRENCY = max(1, int(os.environ.get("CHECK_CONCURRENCY", "32")))   # 与 Worker 网页端一致的并发模型
 CHECK_TIMEOUT = float(os.environ.get("CHECK_TIMEOUT", "90"))          # 单请求客户端超时 (秒)
 MAX_CHECK_NODES = int(os.environ.get("MAX_CHECK_NODES", "0"))         # 0=不限; 本地测试可设小值
@@ -461,8 +459,8 @@ EDGE_HOSTS = [
     h.strip()
     for h in os.environ.get(
         "EDGE_HOSTS",
-        "www.dbs.com.sg:443.gitlab.com:443,www.5h.com:443,www.leics.police.uk:443,www.speedtest.net:443,"
-        "www.sloomb.com:443,linear.app:443,staticdelivery.nexusmods.com:443",images.chesscomfiles.com:443,chrono24.com:443,m.iyf.tv:443,cf.yj250.bond:443,assets.bizclikmedia.net:443,dl.macked.app:443,sourceforge.net:443,www.spacex.com:443,icook.hk:443,mfa.gov.ua:443,dnew.cc:443,sunkist.com:443,duggal.com:443,www.loc.gov:443,zen-browser.app:443,cdn.2x.nz:443,aftership.com:443,singapore.com:443,www.xiaoshuofen.com:443,nodejs.org:443,example.com:443,www.deepl.com:443,redis.io:443,www.trump.com:443,envato.com:443,cdn.ddeed.de:443,
+        "saas.072159.xyz:443,hzytjy.cn:443,ali.nonull.pp.ua:443,auto.dolby.dpdns.org:443,"
+        "cdn.cnno.de:443,saas.sin.fan:443,cf.777791.xyz:443",
     ).split(",")
     if h.strip()
 ]
@@ -523,9 +521,8 @@ def build_hosts_text(data):
 
 
 # edgetunnel 完整订阅 (vless://) 配置
-EDT_UUID = os.environ.get("EDT_UUID", "928e7c07-2a8a-4ea2-9715-567e891c6fc7")
-EDT_DOMAIN = os.environ.get("EDT_DOMAIN", "
-n888.zhangxiegang.ccwu.cc")
+EDT_UUID = os.environ.get("EDT_UUID", "90c14586-42a5-4c30-959d-8b36608d67f7")
+EDT_DOMAIN = os.environ.get("EDT_DOMAIN", "ed.xiaolei.qzz.io")
 EDT_FINGERPRINT = os.environ.get("EDT_FINGERPRINT", "chrome")
 SUB_URL = os.environ.get("SUB_URL", "https://jerylihub.github.io/gate/sub.txt")
 
