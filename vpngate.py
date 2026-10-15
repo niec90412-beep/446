@@ -24,7 +24,7 @@ import os
 import re
 import sys
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
+
 from datetime import datetime, timezone
 from urllib.parse import quote
 import requests
